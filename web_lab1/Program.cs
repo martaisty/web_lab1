@@ -1,8 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using web_lab1.Entities;
 
 namespace web_lab1
 {
@@ -17,7 +23,37 @@ namespace web_lab1
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            // DI set up
+            var host = Host.CreateDefaultBuilder()
+                .ConfigureServices((ctx, services) =>
+                {
+                    ConfigureServices(ctx.Configuration, services);
+                })
+                .Build();
+            var services = host.Services;
+            var mainForm = services.GetRequiredService<FormSagesList>();
+
+            Application.Run(mainForm);
+        }
+
+        private static void ConfigureServices(IConfiguration configuration, IServiceCollection services)
+        {
+            // Entity framework database context
+            services.AddDbContext<DatabaseContext>();
+
+            // Main form
+            services.AddSingleton<FormSagesList>();
+
+            // TODO provide services
+            // // Transient Services
+            // services.AddTransient<IBusinessLayerClass1, BusinessLayerClass1>();
+            //
+            // // Singleton Services
+            // services.AddSingleton<IBusinessLayerClass2, BusinessLayerClass2>();
+
+            // TODO provide modals if exists
+            // Other forms
+            // services.AddTransient<ChildForm1>();
         }
     }
 }
