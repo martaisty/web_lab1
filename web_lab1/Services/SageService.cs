@@ -19,7 +19,7 @@ namespace web_lab1.Services
 
         public Task<Sage> GetSageWithBooks(int id) => _db.Sages
             .Include(s => s.Books)
-            .SingleOrDefaultAsync();
+            .SingleOrDefaultAsync(b => b.Id == id);
 
         public Task<int> Save(Sage sage)
         {
@@ -34,6 +34,7 @@ namespace web_lab1.Services
             existing.Age = sage.Age;
             existing.Photo = sage.Photo;
             existing.City = sage.City;
+            existing.Books = sage.Books;
             _db.Sages.Update(existing);
             return _db.SaveChangesAsync();
         }

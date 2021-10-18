@@ -106,6 +106,7 @@ namespace web_lab1
             // 
             // dataGridViewSages
             // 
+            this.dataGridViewSages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSages.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewSages.MultiSelect = false;
