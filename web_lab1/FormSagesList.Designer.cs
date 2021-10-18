@@ -32,6 +32,9 @@ namespace web_lab1
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Sages = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridViewSages = new System.Windows.Forms.DataGridView();
@@ -53,6 +56,8 @@ namespace web_lab1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewBooks = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewBookSages = new System.Windows.Forms.DataGridView();
+            this.textBookId = new System.Windows.Forms.TextBox();
             this.labelBooksDescription = new System.Windows.Forms.Label();
             this.textBookDescription = new System.Windows.Forms.TextBox();
             this.btnAddSage = new System.Windows.Forms.Button();
@@ -64,7 +69,6 @@ namespace web_lab1
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Sages.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSages)).BeginInit();
@@ -74,6 +78,7 @@ namespace web_lab1
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookSages)).BeginInit();
             this.SuspendLayout();
             // 
             // Sages
@@ -110,7 +115,6 @@ namespace web_lab1
             this.dataGridViewSages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSages.Size = new System.Drawing.Size(563, 585);
             this.dataGridViewSages.TabIndex = 1;
-            this.dataGridViewSages.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridViewSages.SelectionChanged += new System.EventHandler(this.dataGridViewSages_SelectionChanged);
             // 
             // infoPanel
@@ -147,6 +151,9 @@ namespace web_lab1
             // 
             // dataGridViewSageBooks
             // 
+            this.dataGridViewSageBooks.AllowUserToAddRows = false;
+            this.dataGridViewSageBooks.AllowUserToDeleteRows = false;
+            this.dataGridViewSageBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -177,6 +184,7 @@ namespace web_lab1
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewSageBooks.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewSageBooks.RowTemplate.Height = 25;
+            this.dataGridViewSageBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSageBooks.Size = new System.Drawing.Size(431, 273);
             this.dataGridViewSageBooks.TabIndex = 8;
             this.dataGridViewSageBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSageBooks_CellContentClick);
@@ -189,6 +197,7 @@ namespace web_lab1
             this.btnAddBook.TabIndex = 7;
             this.btnAddBook.Text = "Add Book";
             this.btnAddBook.UseVisualStyleBackColor = true;
+            this.btnAddBook.Click += new System.EventHandler(this.btnAddBook_Click);
             // 
             // label1
             // 
@@ -210,6 +219,7 @@ namespace web_lab1
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // bntSave
             // 
@@ -307,7 +317,7 @@ namespace web_lab1
             // 
             // dataGridViewBooks
             // 
-            this.dataGridViewBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewBooks.Location = new System.Drawing.Point(6, 6);
             this.dataGridViewBooks.MultiSelect = false;
             this.dataGridViewBooks.Name = "dataGridViewBooks";
@@ -316,9 +326,12 @@ namespace web_lab1
             this.dataGridViewBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBooks.Size = new System.Drawing.Size(563, 585);
             this.dataGridViewBooks.TabIndex = 2;
+            this.dataGridViewBooks.SelectionChanged += new System.EventHandler(this.dataGridViewBooks_SelectionChanged);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataGridViewBookSages);
+            this.panel1.Controls.Add(this.textBookId);
             this.panel1.Controls.Add(this.labelBooksDescription);
             this.panel1.Controls.Add(this.textBookDescription);
             this.panel1.Controls.Add(this.btnAddSage);
@@ -332,6 +345,56 @@ namespace web_lab1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(451, 588);
             this.panel1.TabIndex = 1;
+            this.panel1.Visible = false;
+            // 
+            // dataGridViewBookSages
+            // 
+            this.dataGridViewBookSages.AllowUserToAddRows = false;
+            this.dataGridViewBookSages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBookSages.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewBookSages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBookSages.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewBookSages.Location = new System.Drawing.Point(10, 283);
+            this.dataGridViewBookSages.MultiSelect = false;
+            this.dataGridViewBookSages.Name = "dataGridViewBookSages";
+            this.dataGridViewBookSages.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBookSages.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewBookSages.RowTemplate.Height = 25;
+            this.dataGridViewBookSages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewBookSages.Size = new System.Drawing.Size(431, 273);
+            this.dataGridViewBookSages.TabIndex = 11;
+            this.dataGridViewBookSages.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBookSages_CellContentClick);
+            // 
+            // textBookId
+            // 
+            this.textBookId.Location = new System.Drawing.Point(224, 36);
+            this.textBookId.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.textBookId.Name = "textBookId";
+            this.textBookId.ReadOnly = true;
+            this.textBookId.Size = new System.Drawing.Size(217, 23);
+            this.textBookId.TabIndex = 10;
+            this.textBookId.Visible = false;
             // 
             // labelBooksDescription
             // 
@@ -348,16 +411,17 @@ namespace web_lab1
             this.textBookDescription.Multiline = true;
             this.textBookDescription.Name = "textBookDescription";
             this.textBookDescription.Size = new System.Drawing.Size(431, 186);
-            this.textBookDescription.TabIndex = 8;
+            this.textBookDescription.TabIndex = 2;
             // 
             // btnAddSage
             // 
             this.btnAddSage.Location = new System.Drawing.Point(366, 254);
             this.btnAddSage.Name = "btnAddSage";
             this.btnAddSage.Size = new System.Drawing.Size(75, 23);
-            this.btnAddSage.TabIndex = 7;
+            this.btnAddSage.TabIndex = 3;
             this.btnAddSage.Text = "Add Sage";
             this.btnAddSage.UseVisualStyleBackColor = true;
+            this.btnAddSage.Click += new System.EventHandler(this.btnAddSage_Click);
             // 
             // labelBookSages
             // 
@@ -372,13 +436,13 @@ namespace web_lab1
             // 
             // btnBookCancel
             // 
-            this.btnBookCancel.Enabled = false;
             this.btnBookCancel.Location = new System.Drawing.Point(91, 562);
             this.btnBookCancel.Name = "btnBookCancel";
             this.btnBookCancel.Size = new System.Drawing.Size(75, 23);
             this.btnBookCancel.TabIndex = 5;
             this.btnBookCancel.Text = "Cancel";
             this.btnBookCancel.UseVisualStyleBackColor = true;
+            this.btnBookCancel.Click += new System.EventHandler(this.btnBookCancel_Click);
             // 
             // btnBookSave
             // 
@@ -439,20 +503,11 @@ namespace web_lab1
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(523, 647);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(214, 23);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Remove me";
-            // 
             // FormSagesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 681);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
@@ -471,8 +526,8 @@ namespace web_lab1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookSages)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -509,7 +564,8 @@ namespace web_lab1
         private System.Windows.Forms.Label labelBooksDescription;
         private System.Windows.Forms.TextBox textBookDescription;
         private System.Windows.Forms.DataGridView dataGridViewSageBooks;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textSageId;
+        private System.Windows.Forms.TextBox textBookId;
+        private System.Windows.Forms.DataGridView dataGridViewBookSages;
     }
 }

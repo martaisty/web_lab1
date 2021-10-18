@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using web_lab1.Entities;
+using web_lab1.Services;
 
 namespace web_lab1
 {
@@ -44,16 +45,9 @@ namespace web_lab1
             // Main form
             services.AddSingleton<FormSagesList>();
 
-            // TODO provide services
-            // // Transient Services
-            // services.AddTransient<IBusinessLayerClass1, BusinessLayerClass1>();
-            //
-            // // Singleton Services
-            // services.AddSingleton<IBusinessLayerClass2, BusinessLayerClass2>();
+            services.AddSingleton<BookService>();
 
-            // TODO provide modals if exists
-            // Other forms
-            // services.AddTransient<ChildForm1>();
+            services.AddSingleton<SageService>();
         }
     }
 }
