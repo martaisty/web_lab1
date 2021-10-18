@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using web_lab1.Entities;
+using web_lab1.Services;
 
 namespace web_lab1
 {
@@ -43,6 +44,10 @@ namespace web_lab1
 
             // Main form
             services.AddSingleton<FormSagesList>();
+
+            services.AddSingleton<BookService>();
+
+            services.AddSingleton<SageService>();
 
             // TODO provide services
             // // Transient Services
