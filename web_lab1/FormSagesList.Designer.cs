@@ -284,6 +284,7 @@ namespace web_lab1
             this.textAge.Name = "textAge";
             this.textAge.Size = new System.Drawing.Size(201, 23);
             this.textAge.TabIndex = 2;
+            this.textAge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textAge_KeyPress);
             // 
             // textName
             // 
